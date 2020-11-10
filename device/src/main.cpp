@@ -28,6 +28,13 @@ void loop() {
   }
 }
 
+/**
+ * LED flashes every certain frequency
+ * 
+ * @param pin pin where LED is connected
+ * @param frecuency frecuency the led will be flashing
+ */
+
 void blinkLed(uint8_t pin, int frecuency){
   digitalWrite(pin, HIGH);
   delay(frecuency);
@@ -35,6 +42,12 @@ void blinkLed(uint8_t pin, int frecuency){
   delay(frecuency);
 }
 
+/**
+  * Connects to local wifi network
+  * 
+  * @param ssid name of local wifi network
+  * @param password password of local wifi network
+*/
 void connectToWifi(char* ssid, char* password) {
   Serial.println("Connecting to: ");
   Serial.println(ssid);
