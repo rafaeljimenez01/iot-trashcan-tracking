@@ -23,6 +23,7 @@ const int DHTPin = 0;  //Conectar sensor DHT a pin D3 = GPIO_0
 #define Trig D0
 #define Echo D1
 #define LED D5
+#define tiltSwitch D8
 
 
 // Set web server port number to 80
@@ -44,6 +45,7 @@ void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
   pinMode(LED, OUTPUT);
+  pinMode(tiltSwitch, INPUT);
   
   wifiConnect();
 
@@ -99,3 +101,9 @@ void wifiConnect(){
 
   digitalWrite(LED, LOW);
 } //End wifiConnect()
+
+void tiltAnalyze(uint8_t pin) {
+    if (digitalRead(pin) == LOW) {
+        Serial.println("ALERT: trash can is down");
+    }
+}
