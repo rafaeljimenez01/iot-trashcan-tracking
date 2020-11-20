@@ -26,23 +26,11 @@
 #define TiltS   D8
 
 
-// Set web server port number to 80
-WiFiServer server(80);
-
-// Variable to store the HTTP request
-String header;
-
 //Define humidity/temperature sensor object.
 DHT dht(DHTPin, DHTTYPE);
 
-//Define FirebaseESP8266 data object for data sending and receiving
-FirebaseData firebaseData;
-
 
 void blinkLed(uint8_t pin, int frecuency);
-int getTiltVal(uint8_t pin);
-float getDistanceUS(uint8_t trigPin, uint8_t echoPin);
-float getUsedCapacity(uint8_t trigPin, uint8_t echoPin, float heigh_cm);
 
 void setup() {
   // put your setup code here, to run once:
@@ -51,39 +39,21 @@ void setup() {
   pinMode(Echo, INPUT);
   pinMode(LED, OUTPUT);
   pinMode(TiltS, INPUT);
-  
-  wifiConnect();
-
-  Firebase.begin(FIREBASE_HOST, FIREBASE_AUTH);
-  Firebase.begin(FIREBASE_HOST, FIREBASE_AUTH);
-  Firebase.reconnectWiFi(true);
-  delay(10);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-
   float h = dht.readHumidity();  //Lectura de Humedad
   float t = dht.readTemperature(); //Lectura de Temperatura
   Serial.print("Temperature = ");
   Serial.println(t);
   Serial.print("Humidity = ");
   Serial.println(h);
-
-  // Demostración de inclinación y ultrasónico:
   Serial.print("Used storage: ");
   Serial.print(getUsedCapacity(Trig, Echo, 50));
   Serial.println("%");
   Serial.print("Tilt value: ");
-  Serial.println(getTiltVal(TiltS));  
-    
-  Firebase.pushFloat(firebaseData, "DHT/2/temperatura", t);  
-  Firebase.pushFloat(firebaseData, "DHT/2/humedad", h);         
-    
+  Serial.println(getTiltVal(TiltS));
 
-  if(WiFi.status() != WL_CONNECTED) {
-      wifiConnect();
-  } 
   delay(1000);
 }
 
@@ -93,25 +63,6 @@ void blinkLed(uint8_t pin, int frecuency){
   digitalWrite(pin, LOW);
   delay(frecuency);
 }
-
-void wifiConnect(){
-  digitalWrite(LED, HIGH);
-  // Local intialization. Once its business is done, there is no need to keep it around
-  WiFiManager wifiManager;
-  
-  // Uncomment and run it once, if you want to erase all the stored information
-  wifiManager.resetSettings();
-  
-  // set custom ip for portal
-  //wifiManager.setAPConfig(IPAddress(10,0,1,1), IPAddress(10,0,1,1), IPAddress(255,255,255,0));
-
-  // fetches ssid and pass from eeprom and tries to connect
-  // if it does not connect it starts an access point with generated name (ESP + ChipID)
-  // and goes into a blocking loop awaiting configuration
-  wifiManager.autoConnect();
-
-  digitalWrite(LED, LOW);
-} //End wifiConnect()
 
 /*
   getTiltVal
@@ -139,7 +90,7 @@ float getDistanceUS(uint8_t trigPin, uint8_t echoPin) {
 /*
   getUsedCapacity
   Sensor: ultrasonic distance sensor
-  Returns percentage of capacity in trashcan that is being used based on height
+  Returns percentage of capacity in trashcan that is being used based on trashcan's height
 */
 float getUsedCapacity(uint8_t trigPin, uint8_t echoPin, float height_cm) {
   float distance = getDistanceUS(trigPin, echoPin);
