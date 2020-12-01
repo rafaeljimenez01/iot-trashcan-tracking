@@ -57,6 +57,13 @@ void setup() {
   Firebase.begin(FIREBASE_HOST, FIREBASE_AUTH);
   Firebase.begin(FIREBASE_HOST, FIREBASE_AUTH);
   Firebase.reconnectWiFi(true);
+
+  String id_container = WiFi.macAddress();
+  float longi = 20.731615;
+  float alt = -103.454605;
+  Firebase.pushString(firebaseData, "container/id_container", id_container);  
+  Firebase.pushFloat(firebaseData, "container/longitude", longi); 
+  Firebase.pushFloat(firebaseData, "container/latitude", alt); 
   delay(10);
 }
 
@@ -65,6 +72,8 @@ void loop() {
 
   float h = dht.readHumidity();  //Lectura de Humedad
   float t = dht.readTemperature(); //Lectura de Temperatura
+  String id_container = WiFi.macAddress();
+  
   Serial.print("Temperature = ");
   Serial.println(t);
   Serial.print("Humidity = ");
@@ -75,16 +84,25 @@ void loop() {
   Serial.print(getUsedCapacity(Trig, Echo, 50));
   Serial.println("%");
   Serial.print("Tilt value: ");
-  Serial.println(getTiltVal(TiltS));  
-    
-  Firebase.pushFloat(firebaseData, "DHT/2/temperatura", t);  
-  Firebase.pushFloat(firebaseData, "DHT/2/humedad", h);         
+  Serial.println(getTiltVal(TiltS));
+  
+  Firebase.pushString(firebaseData, "DHT/id_container", id_container);  
+  Firebase.pushFloat(firebaseData, "DHT/temperatura", t);  
+  Firebase.pushFloat(firebaseData, "DHT/humidity", h);
+
+  Firebase.pushString(firebaseData, "ultra/id_container", id_container);  
+  Firebase.pushFloat(firebaseData, "ultra/distance", getDistanceUS(Trig, Echo));  
+  Firebase.pushFloat(firebaseData, "ultra/percentageUsed", getUsedCapacity(Trig, Echo, 50)); 
+
+  Firebase.pushString(firebaseData, "tilt/id_container", id_container);  
+  Firebase.pushFloat(firebaseData, "tilt/tilted", getTiltVal(TiltS));  
+  
     
 
   if(WiFi.status() != WL_CONNECTED) {
       wifiConnect();
   } 
-  delay(1000);
+  delay(10000);
 }
 
 void blinkLed(uint8_t pin, int frecuency){
@@ -100,7 +118,7 @@ void wifiConnect(){
   WiFiManager wifiManager;
   
   // Uncomment and run it once, if you want to erase all the stored information
-  wifiManager.resetSettings();
+  // wifiManager.resetSettings();
   
   // set custom ip for portal
   //wifiManager.setAPConfig(IPAddress(10,0,1,1), IPAddress(10,0,1,1), IPAddress(255,255,255,0));
