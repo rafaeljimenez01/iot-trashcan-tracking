@@ -45,6 +45,36 @@ Here's why:
 Gathering information is just a part of the project. In the future we would like to analyze the data in order to desing better,healthier and more efficient cities
 
 A list of commonly used resources that I find helpful are listed in the acknowledgements.
+## Getting Started
+
+To set up the circuit you will need:
+<ul>
+  <li>![Node ESP8266](https://en.wikipedia.org/wiki/ESP8266)</li>
+</ul>
+
+### Prerequisites
+
+This is an example of how to list things you need to use the software and how to install them.
+* npm
+  ```sh
+  npm install npm@latest -g
+  ```
+
+### Installation
+
+1. Get a free API Key at [https://example.com](https://example.com)
+2. Clone the repo
+   ```sh
+   git clone https://github.com/your_username_/Project-Name.git
+   ```
+3. Install NPM packages
+   ```sh
+   npm install
+   ```
+4. Enter your API in `config.js`
+   ```JS
+   const API_KEY = 'ENTER YOUR API';
+   ```
 
 ## Project Overview
 
