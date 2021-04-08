@@ -46,35 +46,33 @@ Gathering information is just a part of the project. In the future we would like
 
 A list of commonly used resources that I find helpful are listed in the acknowledgements.
 ## Getting Started
-
 To set up the circuit you will need:
 <ul>
-  <li>![Node ESP8266](https://en.wikipedia.org/wiki/ESP8266)</li>
+  <li>Node ESP8266</li>
+  <li>DHT sensor</li>
+  <li>Tilt sensor</li>
+  <li>Ultrasonic sensor</li>
 </ul>
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+You will need to connect every sensor to the ESP8266 and be aware of which pins you are using.
 
-### Installation
+### Script Utilization
+1. Create a realtime database in Firebase.
+2. Modify this part of the script to you own
+```c++
+  #define FIREBASE_HOST "iot-trashcan-app.firebaseio.com/"
+  #define FIREBASE_AUTH "sdv5W0uduPp3BdFo1dUCpEuRqVLaMuQm619lgUaA"
+```
+3. The database will format itself as information continues to arive
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-   ```sh
-   git clone https://github.com/your_username_/Project-Name.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```JS
-   const API_KEY = 'ENTER YOUR API';
-   ```
+4. If you want to use Freeboard.io to visualize you will need to setup a Dweet.io and plug it here
+```c++
+  const char* host = "www.dweet.io";
+  const char* thing = "prueba_NodeMCU_rafa"; //Change for your name
+```
+5. Enter [freeboard.io](https://freeboard.io/) and select dweet as the source of information.
 
 ## Project Overview
 
