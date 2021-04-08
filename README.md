@@ -56,7 +56,23 @@ To set up the circuit you will need:
 
 ### Prerequisites
 
-You will need to connect every sensor to the ESP8266 and be aware of which pins you are using.
+1. You will need to connect every sensor to the ESP8266 and be aware of which pins you are using.
+
+2. Modify script to match the pins you are using for every sensor
+```c++
+  #define Trig    D0
+  #define Echo    D1
+  #define DHTPin  D3
+  #define LED     D5
+  #define TiltS   D8
+```
+
+Please note: 
+  Trig & Echo are for the ultrasonic sensor
+  
+3. In order to connect to wifi. The node ESP8266 will show a hotspot and you should connect utilizing your phone. It will display a screen when you select Wifi network and enter the password.
+
+4. Blink should blink and then stay on showing you the chip is connected to wifi
 
 ### Script Utilization
 1. Create a realtime database in Firebase.
