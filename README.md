@@ -20,7 +20,7 @@
       <a href="#getting-started">Getting Started</a>
       <ul>
         <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
+        <li><a href="#script utilization">Script Utilization</a></li>
       </ul>
     </li>
     <li><a href="#project-overview">Project Overview</a></li>
@@ -60,14 +60,15 @@ You will need to connect every sensor to the ESP8266 and be aware of which pins 
 
 ### Script Utilization
 1. Create a realtime database in Firebase.
-2. Modify this part of the script to you own
+ 
+2. Modify this part of the script to your own information
 ```c++
   #define FIREBASE_HOST "iot-trashcan-app.firebaseio.com/"
   #define FIREBASE_AUTH "sdv5W0uduPp3BdFo1dUCpEuRqVLaMuQm619lgUaA"
 ```
-3. The database will format itself as information continues to arive
+3. The database will format itself as information continues to arrive
 
-4. If you want to use Freeboard.io to visualize you will need to setup a Dweet.io and plug it here
+4. If you want to use Freeboard.io to visualize the information via a dashboard you will need to setup a Dweet.io and plug it here
 ```c++
   const char* host = "www.dweet.io";
   const char* thing = "prueba_NodeMCU_rafa"; //Change for your name
@@ -86,6 +87,12 @@ The information is also showed in a dashboard utilizg Dweet.io and Freeboard.io:
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
+
+## Contact
+
+Rafael Jimenez - [@01RafaelJimenez](https://https://twitter.com/01RafaelJimenez) - rafaeljimenez_01@hotmail.com
+
+Project Link: [https://github.com/your_username/repo_name](https://github.com/rafaeljimenez01/iot-trashcan-tracking)
 
 ## Acknowledgements
 * [README template](https://github.com/othneildrew/Best-README-Template)
