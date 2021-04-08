@@ -174,6 +174,16 @@ void loop() {
   }
   
 }
+
+
+/**
+ * LED flashes every certain frequency
+ * 
+ * @param pin pin where LED is connected
+ * @param frecuency frecuency the led will be flashing
+ */
+
+
 //Functions
 void blinkLed(uint8_t pin, int frecuency){
     digitalWrite(pin, HIGH);
@@ -209,6 +219,24 @@ int getTiltVal(uint8_t pin) {
   return (digitalRead(pin) == 0);
 }
 
+
+/**
+  * Connects to local wifi network
+  * 
+  * @param ssid name of local wifi network
+  * @param password password of local wifi network
+*/
+void connectToWifi(char* ssid, char* password) {
+  Serial.println("Connecting to: ");
+  Serial.println(ssid);
+
+  WiFi.begin(ssid, password);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+    blinkLed(LED, 100);
+  }
+
 /*
   getDistanceUS
   Sensor: ultrasonic distance sensor
@@ -222,6 +250,7 @@ float getDistanceUS(uint8_t trigPin, uint8_t echoPin) {
   float distance_cm = 0.017 * duration_us;
   return distance_cm;
 }
+
 
 /*
   getUsedCapacity
