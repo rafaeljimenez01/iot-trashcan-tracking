@@ -8,6 +8,8 @@
 - [Oswaldo Hernandez](https://github.com/OSWA00)
 - [Oscar Miranda](https://github.com/oscarmires)
 
+
+## What are you interested in?
 <details open="open">
   <summary>Table of Contents</summary>
   <ol>
@@ -22,7 +24,6 @@
       </ul>
     </li>
     <li><a href="#projectOverview">Project Overview</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgements">Acknowledgements</a></li>
@@ -54,3 +55,9 @@ The realtime database was created in firebase and has the following structure:
 The information is also showed in a dashboard utilizg Dweet.io and Freeboard.io:
 ![Dashboard SS](assets/Capture.JPG)
 
+## License
+
+Distributed under the MIT License. See `LICENSE` for more information.
+
+## Acknowledgements
+* [README template](https://github.com/othneildrew/Best-README-Template)
